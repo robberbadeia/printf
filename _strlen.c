@@ -7,16 +7,12 @@
  */
 int _strlen(const char *c)
 {
-	int i = 0, f = 0;
+	int i = 0
 
 	while (c[i] != '\0')
 	{
-		if (c[i] == '%' && c[i++] == '%')
-			f++;
 		i++;
 	}
-	if (f == 1)
-		return (i - 1);
-	else
-		return (i);
+
+	return (i);
 }

@@ -5,10 +5,11 @@
  *
  *Return: non
  */
-void print_intNumber(va_list lst)
+int print_intNumber(va_list lst)
 {
 	int n;
 	unsigned int m, d, count;
+	int c = 0;
 
 	n = va_arg(lst, int);
 
@@ -34,5 +35,8 @@ void print_intNumber(va_list lst)
 	for (; count >= 1; count /= 10)
 	{
 		_putchar(((m / count) % 10) + 48);
+		c++;
 	}
+
+	return (c);
 }

@@ -8,9 +8,10 @@
  * Return: void
  */
 
-void select_to_print(const char *fmt, int *index, va_list lst)
+int select_to_print(const char *fmt, int *index, va_list lst)
 {
 int i = 0;
+int x = 0;
 st selector[] = {
 {'d', print_intNumber}, {'i', print_intNumber},
 {'r', print_revstring}, {'R', print_rot13},
@@ -22,10 +23,13 @@ while (selector[i].key != '\0')
 {
 if (selector[i].key == fmt[*index])
 {
-selector[i].func(lst);
+x = selector[i].func(lst);
+return (x);
 }
 i++;
 }
-
+_putchar(fmt[*index]);
+x = 1;
+return (x);
 }
 

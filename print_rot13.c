@@ -5,9 +5,10 @@
  *
  * Return: Non
  */
-void print_rot13(va_list lst)
+int print_rot13(va_list lst)
 {
 	int i, j;
+	int x = 0;
 	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 	char *s = va_arg(lst, char*);
@@ -19,8 +20,11 @@ void print_rot13(va_list lst)
 			if (s[i] == a[j])
 			{
 				_putchar(b[j]);
-				break;
+				x++;
 			}
 		}
 	}
+
+	return (x);
+
 }

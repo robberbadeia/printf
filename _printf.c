@@ -39,7 +39,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			++i;
-			select_to_print (format, &i, lst);
+			len += select_to_print (format, &i, lst);
+			len -= 2;
 		}
 	}
 	va_end(lst);

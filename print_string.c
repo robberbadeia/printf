@@ -7,12 +7,13 @@
  * Return: void
  */
 
-void print_char(va_list lst)
+int print_char(va_list lst)
 {
 int ch;
 
 ch = va_arg(lst, int);
 _putchar(ch);
+return (1);
 
 }
 
@@ -24,7 +25,7 @@ _putchar(ch);
  * Return: void
  */
 
-void print_str(va_list lst)
+int  print_str(va_list lst)
 {
 char *str;
 int k = 0;
@@ -35,6 +36,7 @@ while (str[k] != '\0')
 _putchar(str[k]);
 k++;
 }
+return (k);
 }
 
 /**
@@ -44,8 +46,9 @@ k++;
  * Return: void
  */
 
-void print_percent(va_list lst)
+int  print_percent(va_list lst)
 {
 _putchar('%');
+return (1);
 }
 

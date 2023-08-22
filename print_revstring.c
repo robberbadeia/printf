@@ -5,10 +5,11 @@
  *
  *Return: Non
  */
-void print_revstring(va_list lst)
+int print_revstring(va_list lst)
 {
 	char *c = va_arg(lst, char*);
 	int i = 0;
+	int x = 0;
 
 	i = _strlen(c);
 	i--;
@@ -17,5 +18,7 @@ void print_revstring(va_list lst)
 	{
 		_putchar (c[i]);
 		i--;
+		x++;
 	}
+	return (x);
 }
