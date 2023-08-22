@@ -21,7 +21,7 @@ struct format
 
 void select_to_print(const char *fmt, int *index, va_list lst);
 int _printf(const char *format, ...);
-int _strlen(char *c);
+int _strlen(const char *c);
 int _putchar(char c);
 void print_intNumber(va_list lst);
 void print_rot13(va_list lst);
