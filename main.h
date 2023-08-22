@@ -12,11 +12,12 @@
  * @func: type pointer to function for the conversion specifier
  *
  */
-struct format
+typedef struct format
 {
 	char key;
 	int (*func)(va_list);
 } st;
+
 
 
 int  select_to_print(const char *fmt, int *index, va_list lst);
