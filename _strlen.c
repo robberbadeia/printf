@@ -5,9 +5,9 @@
  *
  *Return: int
  */
-int _strlen(char *c)
+int _strlen(const char *c)
 {
-	int i, f = 0;
+	int i = 0, f = 0;
 
 	while (c[i] != '\0')
 	{
