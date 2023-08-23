@@ -9,11 +9,11 @@ int _printf(const char *format, ...)
 {
 	int i;
 	int  len = 0;
+	va_list lst;
 
 	/*length of string returned by printf function*/
 	len = _strlen(format);
 
-	va_list lst;
 
 	va_start(lst, format);
 

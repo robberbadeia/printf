@@ -48,7 +48,10 @@ return (k);
 
 int  print_percent(va_list lst)
 {
-_putchar('%');
+int c = 0; 
+	
+c= va_arg(lst, int);
+_putchar(c);
 return (1);
 }
 
