@@ -1,0 +1,9 @@
+NAME
+     printf, fprintf, sprintf, snprintf, asprintf, dprintf, vprintf, vfprintf,
+     vsprintf, vsnprintf, vasprintf, vdprintf -- formatted output conversion
+
+
+LIBRARY
+     Standard C Library (libc, -lc)
+
+
