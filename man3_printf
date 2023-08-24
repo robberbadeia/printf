@@ -49,3 +49,101 @@ SYNOPSIS
 
      int
      vdprintf(int fd, const char * restrict format, va_list ap);
+
+
+DESCRIPTION
+     The printf() family of functions produces output according to a format as
+     described below.  The printf() and vprintf() functions write output to
+     stdout, the standard output stream; fprintf() and vfprintf() write output
+     to the given output stream; dprintf() and vdprintf() write output to the
+     given file descriptor; sprintf(), snprintf(), vsprintf(), and vsnprintf()
+     write to the character string s; and asprintf() and vasprintf() dynami-
+     cally allocate a new string with malloc(3).
+
+     Extended locale versions of these functions are documented in
+     printf_l(3).  See xlocale(3) for more information.
+
+     These functions write the output under the control of a format string
+     that specifies how subsequent arguments (or arguments accessed via the
+     variable-length argument facilities of stdarg(3)) are converted for out-
+     put.
+
+     These functions return the number of characters printed (not including
+     the trailing `\0' used to end output to strings) or a negative value if
+     an output error occurs, except for snprintf() and vsnprintf(), which
+     return the number of characters that would have been printed if the n
+     were unlimited (again, not including the final `\0').
+
+     The asprintf() and vasprintf() functions set *ret to be a pointer to a
+     buffer sufficiently large to hold the formatted string.  This pointer
+     should be passed to free(3) to release the allocated storage when it is
+     no longer needed.  If sufficient space cannot be allocated, asprintf()
+     and vasprintf() will return -1 and set ret to be a NULL pointer.
+
+     The snprintf() and vsnprintf() functions will write at most n-1 of the
+     characters printed into the output string (the n'th character then gets
+     the terminating `\0'); if the return value is greater than or equal to
+     the n argument, the string was too short and some of the printed charac-
+     ters were discarded.  The output is always null-terminated.
+
+     The sprintf() and vsprintf() functions effectively assume an infinite n.
+
+     For those routines that write to a user-provided character string, that
+     string and the format strings should not overlap, as the behavior is
+     undefined.
+
+     The format string is composed of zero or more directives: ordinary char-
+     acters (not %), which are copied unchanged to the output stream; and con-
+     version specifications, each of which results in fetching zero or more
+     subsequent arguments.  Each conversion specification is introduced by the
+     % character.  The arguments must correspond properly (after type promo-
+     tion) with the conversion specifier.  After the %, the following appear
+     in sequence:
+
+     o   An optional field, consisting of a decimal digit string followed by a
+         $, specifying the next argument to access.  If this field is not pro-
+         vided, the argument following the last argument accessed will be
+         used.  Arguments are numbered starting at 1.  If unaccessed arguments
+         in the format string are interspersed with ones that are accessed the
+         results will be indeterminate.
+
+     o   Zero or more of the following flags:
+
+         `#'          The value should be converted to an ``alternate form''.
+                      For c, d, i, n, p, s, and u conversions, this option has
+                      no effect.  For o conversions, the precision of the num-
+                      ber is increased to force the first character of the
+                      output string to a zero.  For x and X conversions, a
+                      non-zero result has the string `0x' (or `0X' for X con-
+                      versions) prepended to it.  For a, A, e, E, f, F, g, and
+                      G conversions, the result will always contain a decimal
+                      point, even if no digits follow it (normally, a decimal
+                      point appears in the results of those conversions only
+                      if a digit follows).  For g and G conversions, trailing
+                      zeros are not removed from the result as they would oth-
+                      erwise be.
+
+         `0' (zero)   Zero padding.  For all conversions except n, the con-
+                      verted value is padded on the left with zeros rather
+                      than blanks.  If a precision is given with a numeric
+                      conversion (d, i, o, u, i, x, and X), the 0 flag is
+                      ignored.
+
+         `-'          A negative field width flag; the converted value is to
+                      be left adjusted on the field boundary.  Except for n
+                      conversions, the converted value is padded on the right
+                      with blanks, rather than on the left with blanks or
+                      zeros.  A - overrides a 0 if both are given.
+
+         ` ' (space)  A blank should be left before a positive number produced
+                      by a signed conversion (a, A, d, e, E, f, F, g, G, or
+                      i).
+
+         `+'          A sign must always be placed before a number produced by
+                      a signed conversion.  A + overrides a space if both are
+                      used.
+
+         `''          Decimal conversions (d, u, or i) or the integral portion
+                      of a floating point conversion (f or F) should be
+                      grouped and separated by thousands using the non-mone-
+                      tary separator returned by localeconv(3).
