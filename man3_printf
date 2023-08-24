@@ -437,3 +437,48 @@ SECURITY CONSIDERATIONS
      Always use the proper secure idiom:
 
            snprintf(buffer, sizeof(buffer), "%s", string);
+
+COMPATIBILITY
+     The conversion formats %D, %O, and %U are not standard and are provided
+     only for backward compatibility.  The effect of padding the %p format
+     with zeros (either by the 0 flag or by specifying a precision), and the
+     benign effect (i.e., none) of the # flag on %n and %p conversions, as
+     well as other nonsensical combinations such as %Ld, are not standard;
+     such combinations should be avoided.
+
+
+ERRORS
+     In addition to the errors documented for the write(2) system call, the
+     printf() family of functions may fail if:
+
+     [EILSEQ]           An invalid wide character code was encountered.
+
+     [ENOMEM]           Insufficient storage space is available.
+
+
+SEE ALSO
+     printf(1), printf_l(3), fmtcheck(3), scanf(3), setlocale(3), stdarg(3),
+     wprintf(3)
+
+
+STANDARDS
+     Subject to the caveats noted in the BUGS section below, the fprintf(),
+     printf(), sprintf(), vprintf(), vfprintf(), and vsprintf() functions con-
+     form to ANSI X3.159-1989 (``ANSI C89'') and ISO/IEC 9899:1999
+     (``ISO C99'').  With the same reservation, the snprintf() and vsnprintf()
+     functions conform to ISO/IEC 9899:1999 (``ISO C99''), while dprintf() and
+     vdprintf() conform to .
+
+
+HISTORY
+     The functions asprintf() and vasprintf() first appeared in the GNU C
+     library.  These were implemented by Peter Wemm <peter@FreeBSD.org> in
+     FreeBSD 2.2, but were later replaced with a different implementation from
+     Todd C. Miller <Todd.Miller@courtesan.com> for OpenBSD 2.3.  The
+     dprintf() and vdprintf() functions were added in FreeBSD 8.0.
+
+
+BUGS
+     The printf family of functions do not correctly handle multibyte charac-
+     ters in the format argument.
+
